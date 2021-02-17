@@ -29,7 +29,8 @@
 			return {
 				message: 'Hello',
 				firstName: 'Foo',
-				lastName: 'Bar'
+				lastName: 'Bar',
+                fullName: 'Foo Bar'
 			}
 		},
 		computed: {
@@ -61,6 +62,14 @@
 				return this.message.split('').reverse().join('')
 			}
 		},
+        watch: {
+            firstName: function(val) {
+                this.fullName = val + ' ' + this.lastName
+            },
+            lastName: function(val) {
+                this.fullName = this.firstName + ' ' + val
+            }
+        },
 		onLoad() {
 
 		}
