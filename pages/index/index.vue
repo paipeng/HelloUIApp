@@ -11,6 +11,10 @@
 			<button v-on:click="changeFullname">Change Fullname</button>
 
 		</view>
+		
+		<view>
+			<view>Reversed message: "{{ reversedMessage2() }}"</view>
+		</view>
 	</view>
 </template>
 
@@ -45,6 +49,9 @@
 		methods: {
 			changeFullname() {
 				this.fullName = 'Pai Peng';
+			},
+			reversedMessage2(){
+				return this.message.split('').reverse().join('')
 			}
 		},
 		onLoad() {
