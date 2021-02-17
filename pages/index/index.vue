@@ -1,88 +1,12 @@
 <template>
 	<view class="content">
-		<view>
-			<view>Original message: "{{ message }}"</view>
-			<view>Computed reversed message: "{{ reversedMessage }}"</view>
-		</view>
-		<view>
-			<view>{{ fullName }}</view>
-		</view>
-		<view>
-			<button v-on:click="changeFullname">Change Fullname</button>
-
-		</view>
-		
-		<view>
-			<view>Reversed message: "{{ reversedMessage2() }}"</view>
-		</view>
-		
-		<view>
-			<view>Now: "{{ now }}"</view>
-		</view>
-		
-		<view>
-			<input type="text" v-model="word">
-		</view>
+		<my-component-name></my-component-name>
 	</view>
 </template>
 
 
 <script>
-	export default {
-		data() {
-			return {
-				message: 'Hello',
-				firstName: 'Foo',
-				lastName: 'Bar',
-                fullName2: 'Foo Bar',
-				word: 'word'
-			}
-		},
-		computed: {
-			// 计算属性的 getter
-			reversedMessage(){
-			  return this.message.split('').reverse().join('')
-			},
-			fullName: {
-				// getter
-				get(){
-					return this.firstName + ' ' + this.lastName
-				},
-				// setter
-				set(newValue){
-					var names = newValue.split(' ')
-					this.firstName = names[0]
-					this.lastName = names[names.length - 1]
-				}
-			},
-			now(){
-				return Date.now()
-			}
-		},
-		methods: {
-			changeFullname() {
-				this.fullName = 'Pai Peng';
-			},
-			reversedMessage2(){
-				return this.message.split('').reverse().join('')
-			}
-		},
-        watch: {
-            firstName: function(val) {
-                this.fullName2 = val + ' ' + this.lastName
-            },
-            lastName: function(val) {
-                this.fullName2 = this.firstName + ' ' + val
-            },
-			/* 使用watch来响应数据的变化 */
-			word(newVal, oldVal) {
-				console.log('最新值是：'+newVal,"原来的值是："+ oldVal);
-			}
-        },
-		onLoad() {
-
-		}
-	}
+	
 </script>
 
 <style>
