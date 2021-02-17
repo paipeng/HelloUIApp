@@ -8,6 +8,10 @@
 			<!-- `greet` 是在下面定义的方法名 -->
 			<button v-on:click="greet">Greet</button>
 		</view>
+		<view>
+			<button v-on:click="say('hi')">Say hi</button>
+			<button v-on:click="say('what')">Say what</button>
+		</view>
 	</view>
 </template>
 
@@ -27,6 +31,11 @@
 				console.log(event);
 				uni.showToast({
 					title: 'Hello ' + this.name + '!'
+				});
+			},
+			say(message) {
+				uni.showToast({
+					title: message
 				});
 			}
 		},
