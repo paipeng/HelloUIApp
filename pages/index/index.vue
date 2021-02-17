@@ -4,6 +4,10 @@
 			<button v-on:click="counter += 1">Add 1</button>
 			<text>The button above has been clicked {{ counter }} times.</text>
 		</view>
+		<view>
+			<!-- `greet` 是在下面定义的方法名 -->
+			<button v-on:click="greet">Greet</button>
+		</view>
 	</view>
 </template>
 
@@ -12,7 +16,18 @@
 	export default {
 		data() {
 			return {
-				counter:0
+				counter:0,
+				name: 'Vue.js'
+			}
+		},
+		// 在 `methods` 对象中定义方法
+		methods: {
+			greet(event){
+				// `event` 是原生 DOM 事件
+				console.log(event);
+				uni.showToast({
+					title: 'Hello ' + this.name + '!'
+				});
 			}
 		},
 		onLoad() {
