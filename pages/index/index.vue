@@ -1,28 +1,26 @@
 <template>
 	<view class="content">
-		<image class="logo" v-bind:src="imgUrl"></image>
-		<!-- 缩写 -->
-		<image class="logo" :src="imgUrl"></image>
-		<!-- prop 绑定。“prop”必须在 my-component 中声明。-->
-		<my-component :prop="someThing"></my-component>
-	
-		<button v-bind:disabled="isButtonDisabled">Button</button>
-		
-		<!-- 完整语法 -->
-		<view v-on:click="doSomething">点击</view>    
-		<!-- 缩写 -->
-		<view @click="doSomething">点击</view>
-		
-		<view v-once>This will never change: {{msg}}</view>
-		<!-- 有子元素 -->
-		<view v-once>
-			<text>comment</text>
-			<text>{{msg}}</text>
-		</view>
-		
 		<view>
-			<view v-html="rawHtml"></view>
+			<!-- class -->
+			<view class="static" :class="{ active: isActive}">111</view>
+			<view class="static" :class="{ active: isActive, 'text-danger': hasError }">222</view>
+			<!-- style -->
+			<view v-bind:style="{ color: activeColor, fontSize: fontSize + 'px' }">333</view>
 		</view>
+		<view class="static active"> TEST </view>
+		
+		<!-- class -->
+		<view class="static" :class="[activeClass,errorClass]">111</view>
+		<view class="static" v-bind:class="[isActive ? activeClass : '', errorClass]">222</view><!-- 三元表达式 -->
+		<view class="static" v-bind:class="[{ active: isActive }, errorClass]">333</view>
+		<!-- style -->
+		<view v-bind:style="[{ color: activeColor, fontSize: fontSize + 'px' }]">444</view>
+		
+		<!-- 支持 -->
+		<view class="container" :class="computedClassStr">computedClassStr</view>
+		<view class="container" :class="{active: isActive}"> isActive</view>
+		<!-- 不支持 -->
+		<view class="container" :class="computedClassObject">computedClassObject</view>
 	</view>
 </template>
 
@@ -30,12 +28,12 @@
 	export default {
 		data() {
 			return {
-				title: 'Hello',
-				imgUrl: '/static/logo.png',
-				someThing: '',
-				isButtonDisabled: true,
-				msg: 'Hello VueJS',
-				rawHtml: '<div style="text-align:center;background-color: #AAf0fF;"><div >我是内容</div><img src="/static/logo.png"/></div>'
+				isActive: true,
+				hasError: false,
+				activeColor:"green",
+				fontSize:50,
+				activeClass: 'active',
+				errorClass: 'text-danger'
 			}
 		},
 		onLoad() {
@@ -46,6 +44,14 @@
 				console.log('doSomething');
 				this.msg = 'Hello VueJs!!!!';
 			}
+		},
+		computed: {
+		  computedClassStr () {
+			  return this.isActive ? 'active' : ''
+		  },
+		  computedClassObject () {
+			  return { active: this.isActive }
+		  }
 		}
 	}
 </script>
@@ -76,4 +82,17 @@
 		font-size: 36rpx;
 		color: #8f8f94;
 	}
+	
+	.static{
+		color: #2C405A;
+		font-size:30rpx;
+	}
+	.active{
+		background-color: #007AFF;
+	}
+	.text-danger{
+		font-size:60rpx;
+		color: #DD524D;
+	}
+	
 </style>
