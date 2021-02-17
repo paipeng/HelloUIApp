@@ -30,7 +30,7 @@
 				message: 'Hello',
 				firstName: 'Foo',
 				lastName: 'Bar',
-                fullName: 'Foo Bar'
+                fullName2: 'Foo Bar'
 			}
 		},
 		computed: {
@@ -64,10 +64,10 @@
 		},
         watch: {
             firstName: function(val) {
-                this.fullName = val + ' ' + this.lastName
+                this.fullName2 = val + ' ' + this.lastName
             },
             lastName: function(val) {
-                this.fullName = this.firstName + ' ' + val
+                this.fullName2 = this.firstName + ' ' + val
             }
         },
 		onLoad() {
