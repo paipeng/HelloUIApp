@@ -1,11 +1,12 @@
 <template>
 	<view>
-		{{myComponentName}}
+		{{myComponentName}} {{title.name}} {{title.index}}
 	</view>
 </template>
 
 <script>
 	export default {
+		props: ['title'],
 		data() {
 			return {
 				"myComponentName":"Pai Peng"

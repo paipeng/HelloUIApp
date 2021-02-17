@@ -1,12 +1,24 @@
 <template>
 	<view class="content">
-		<my-component-name></my-component-name>
+		<my-component-name title="My journey with Vue"></my-component-name>
+		
+		<my-component-name :title="title"></my-component-name>
 	</view>
+	
 </template>
 
 
 <script>
-	
+	export default {
+		data() {
+			return {
+				title:{
+					name: "hello my-component-name",
+					index: 1
+				}
+			}
+		}
+	}
 </script>
 
 <style>
