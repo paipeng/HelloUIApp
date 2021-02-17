@@ -1,26 +1,24 @@
 <template>
 	<view class="content">
+		<view v-if="seen">现在你看到我了</view>
+		<view v-else>你看不到我了</view>
+		
 		<view>
-			<!-- class -->
-			<view class="static" :class="{ active: isActive}">111</view>
-			<view class="static" :class="{ active: isActive, 'text-danger': hasError }">222</view>
-			<!-- style -->
-			<view v-bind:style="{ color: activeColor, fontSize: fontSize + 'px' }">333</view>
+			<view v-if="type === 'A'">
+				A
+			</view>
+			<view v-else-if="type === 'B'">
+				B
+			</view>
+			<view v-else-if="type === 'C'">
+				C
+			</view>
+			<view v-else>
+				Not A/B/C
+			</view>
 		</view>
-		<view class="static active"> TEST </view>
 		
-		<!-- class -->
-		<view class="static" :class="[activeClass,errorClass]">111</view>
-		<view class="static" v-bind:class="[isActive ? activeClass : '', errorClass]">222</view><!-- 三元表达式 -->
-		<view class="static" v-bind:class="[{ active: isActive }, errorClass]">333</view>
-		<!-- style -->
-		<view v-bind:style="[{ color: activeColor, fontSize: fontSize + 'px' }]">444</view>
-		
-		<!-- 支持 -->
-		<view class="container" :class="computedClassStr">computedClassStr</view>
-		<view class="container" :class="{active: isActive}"> isActive</view>
-		<!-- 不支持 -->
-		<view class="container" :class="computedClassObject">computedClassObject</view>
+		<view v-show="ok">Hello!</view>
 	</view>
 </template>
 
@@ -28,30 +26,13 @@
 	export default {
 		data() {
 			return {
-				isActive: true,
-				hasError: false,
-				activeColor:"green",
-				fontSize:50,
-				activeClass: 'active',
-				errorClass: 'text-danger'
+				seen: true,
+				type: 'B',
+				ok: true
 			}
 		},
 		onLoad() {
 
-		},
-		methods: {
-			doSomething() {
-				console.log('doSomething');
-				this.msg = 'Hello VueJs!!!!';
-			}
-		},
-		computed: {
-		  computedClassStr () {
-			  return this.isActive ? 'active' : ''
-		  },
-		  computedClassObject () {
-			  return { active: this.isActive }
-		  }
 		}
 	}
 </script>
