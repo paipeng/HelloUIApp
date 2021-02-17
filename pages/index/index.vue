@@ -1,24 +1,8 @@
 <template>
 	<view class="content">
 		<view>
-			<view v-for="(item, index) in items">
-				{{ index }} - {{ item.message }}
-			</view>
-		</view>
-		<view>
-			<view v-for="(value, name, index) in object">
-				 {{ index }}. {{ name }}: {{ value }}
-			</view>
-		</view>
-		<view>
-			<!-- array 中 item 的某个 property -->
-			<view v-for="(item,index) in objectArray" :key="item.id">
-				{{index +':'+ item.name}}
-			</view>
-			<!-- item 本身是一个唯一的字符串或者数字时，可以使用 item 本身 -->
-			<view v-for="(item,index) in stringArray" :key="item">
-				{{index +':'+ item}}
-			</view>
+			<button v-on:click="counter += 1">Add 1</button>
+			<text>The button above has been clicked {{ counter }} times.</text>
 		</view>
 	</view>
 </template>
@@ -28,23 +12,7 @@
 	export default {
 		data() {
 			return {
-				items: [
-					{ message: 'Foo' },
-					{ message: 'Bar' }
-				],
-				object: {
-					title: 'How to do lists in Vue',
-					author: 'Jane Doe',
-					publishedAt: '2020-04-10'
-				},
-				objectArray:[{
-					id:0,
-					name:'li ming'
-				},{
-					id:1,
-					name:'wang peng'
-				}],
-				stringArray:['a','b','c']
+				counter:0
 			}
 		},
 		onLoad() {
