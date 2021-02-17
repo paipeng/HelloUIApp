@@ -15,6 +15,10 @@
 		<view>
 			<view>Reversed message: "{{ reversedMessage2() }}"</view>
 		</view>
+		
+		<view>
+			<view>Now: "{{ now }}"</view>
+		</view>
 	</view>
 </template>
 
@@ -44,6 +48,9 @@
 					this.firstName = names[0]
 					this.lastName = names[names.length - 1]
 				}
+			},
+			now(){
+				return Date.now()
 			}
 		},
 		methods: {
