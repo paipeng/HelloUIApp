@@ -1,22 +1,8 @@
 <template>
 	<view class="content">
 		<view>
-			<input v-model="message" placeholder="edit me">
-			<text>Message is: {{ message }}</text>
-		</view>
-		<view>
-			<picker @change="bindPickerChange" :value="index" :range="array">
-				<view class="picker">
-					当前选择：{{array[index]}}
-				</view>
-			</picker>
-		</view>
-		<view>
-			<radio-group class="radio-group" @change="radioChange">
-				<label class="radio" v-for="(item, index) in items" :key="item.name">
-					<radio :value="item.name" :checked="item.checked" /> {{item.value}}
-				</label>
-			</radio-group>
+			<view>Original message: "{{ message }}"</view>
+			<view>Computed reversed message: "{{ reversedMessage }}"</view>
 		</view>
 	</view>
 </template>
@@ -26,44 +12,13 @@
 	export default {
 		data() {
 			return {
-				message:"",
-				index: 0,
-				array: ['A', 'B', 'C'],
-				items: [{
-					name: 'USA',
-					value: '美国'
-				},
-				{
-					name: 'CHN',
-					value: '中国',
-					checked: 'true'
-				},
-				{
-					name: 'BRA',
-					value: '巴西'
-				},
-				{
-					name: 'JPN',
-					value: '日本'
-				},
-				{
-					name: 'ENG',
-					value: '英国'
-				},
-				{
-					name: 'TUR',
-					value: '法国'
-				}
-			]
+				message: 'Hello'
 			}
 		},
-		methods: {
-			bindPickerChange(e) {				
-				console.log(e.target.value);
-				this.index = e.target.value;
-			},
-			radioChange(e) {
-				console.log('radio发生change事件，携带value值为：', e.target.value)
+		computed: {
+			// 计算属性的 getter
+			reversedMessage(){
+			  return this.message.split('').reverse().join('')
 			}
 		},
 		onLoad() {
