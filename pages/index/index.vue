@@ -1,34 +1,50 @@
 <template>
 	<view class="content">
-		<view v-if="seen">现在你看到我了</view>
-		<view v-else>你看不到我了</view>
-		
 		<view>
-			<view v-if="type === 'A'">
-				A
-			</view>
-			<view v-else-if="type === 'B'">
-				B
-			</view>
-			<view v-else-if="type === 'C'">
-				C
-			</view>
-			<view v-else>
-				Not A/B/C
+			<view v-for="(item, index) in items">
+				{{ index }} - {{ item.message }}
 			</view>
 		</view>
-		
-		<view v-show="ok">Hello!</view>
+		<view>
+			<view v-for="(value, name, index) in object">
+				 {{ index }}. {{ name }}: {{ value }}
+			</view>
+		</view>
+		<view>
+			<!-- array 中 item 的某个 property -->
+			<view v-for="(item,index) in objectArray" :key="item.id">
+				{{index +':'+ item.name}}
+			</view>
+			<!-- item 本身是一个唯一的字符串或者数字时，可以使用 item 本身 -->
+			<view v-for="(item,index) in stringArray" :key="item">
+				{{index +':'+ item}}
+			</view>
+		</view>
 	</view>
 </template>
+
 
 <script>
 	export default {
 		data() {
 			return {
-				seen: true,
-				type: 'B',
-				ok: true
+				items: [
+					{ message: 'Foo' },
+					{ message: 'Bar' }
+				],
+				object: {
+					title: 'How to do lists in Vue',
+					author: 'Jane Doe',
+					publishedAt: '2020-04-10'
+				},
+				objectArray:[{
+					id:0,
+					name:'li ming'
+				},{
+					id:1,
+					name:'wang peng'
+				}],
+				stringArray:['a','b','c']
 			}
 		},
 		onLoad() {
