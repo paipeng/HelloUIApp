@@ -4,6 +4,13 @@
 			<view>Original message: "{{ message }}"</view>
 			<view>Computed reversed message: "{{ reversedMessage }}"</view>
 		</view>
+		<view>
+			<view>{{ fullName }}</view>
+		</view>
+		<view>
+			<button v-on:click="changeFullname">Change Fullname</button>
+
+		</view>
 	</view>
 </template>
 
@@ -12,13 +19,32 @@
 	export default {
 		data() {
 			return {
-				message: 'Hello'
+				message: 'Hello',
+				firstName: 'Foo',
+				lastName: 'Bar'
 			}
 		},
 		computed: {
 			// 计算属性的 getter
 			reversedMessage(){
 			  return this.message.split('').reverse().join('')
+			},
+			fullName: {
+				// getter
+				get(){
+					return this.firstName + ' ' + this.lastName
+				},
+				// setter
+				set(newValue){
+					var names = newValue.split(' ')
+					this.firstName = names[0]
+					this.lastName = names[names.length - 1]
+				}
+			}
+		},
+		methods: {
+			changeFullname() {
+				this.fullName = 'Pai Peng';
 			}
 		},
 		onLoad() {
