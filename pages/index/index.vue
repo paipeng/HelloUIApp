@@ -2,7 +2,7 @@
 	<view class="content">
 		<my-component-name title="My journey with Vue"></my-component-name>
 		
-		<my-component-name :title="title"></my-component-name>
+		<my-component-name @click.native="clickComponentA" :title="title"></my-component-name>
 	</view>
 	
 </template>
@@ -16,6 +16,11 @@
 					name: "hello my-component-name",
 					index: 1
 				}
+			}
+		},
+		methods: {
+			clickComponentA(){
+				console.log("clickComponentA");
 			}
 		}
 	}
