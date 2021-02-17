@@ -1,8 +1,27 @@
 <template>
 	<view class="content">
-		<image class="logo" src="/static/logo.png"></image>
-		<view class="text-area">
-			<text class="title">{{title}}</text>
+		<image class="logo" v-bind:src="imgUrl"></image>
+		<!-- 缩写 -->
+		<image class="logo" :src="imgUrl"></image>
+		<!-- prop 绑定。“prop”必须在 my-component 中声明。-->
+		<my-component :prop="someThing"></my-component>
+	
+		<button v-bind:disabled="isButtonDisabled">Button</button>
+		
+		<!-- 完整语法 -->
+		<view v-on:click="doSomething">点击</view>    
+		<!-- 缩写 -->
+		<view @click="doSomething">点击</view>
+		
+		<view v-once>This will never change: {{msg}}</view>
+		<!-- 有子元素 -->
+		<view v-once>
+			<text>comment</text>
+			<text>{{msg}}</text>
+		</view>
+		
+		<view>
+			<view v-html="rawHtml"></view>
 		</view>
 	</view>
 </template>
@@ -11,12 +30,23 @@
 	export default {
 		data() {
 			return {
-				title: 'Hello'
+				title: 'Hello',
+				imgUrl: '/static/logo.png',
+				someThing: '',
+				isButtonDisabled: true,
+				msg: 'Hello VueJS',
+				rawHtml: '<div style="text-align:center;background-color: #AAf0fF;"><div >我是内容</div><img src="/static/logo.png"/></div>'
 			}
 		},
 		onLoad() {
 
 		},
+		methods: {
+			doSomething() {
+				console.log('doSomething');
+				this.msg = 'Hello VueJs!!!!';
+			}
+		}
 	}
 </script>
 
