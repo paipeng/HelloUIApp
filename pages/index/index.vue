@@ -12,6 +12,13 @@
 			<button v-on:click="say('hi')">Say hi</button>
 			<button v-on:click="say('what')">Say what</button>
 		</view>
+		
+		<view>
+			<button v-on:click="warn('Form cannot be submitted yet.', $event)">
+			  Submit
+			</button>
+		</view>
+
 	</view>
 </template>
 
@@ -34,6 +41,15 @@
 				});
 			},
 			say(message) {
+				uni.showToast({
+					title: message
+				});
+			},
+			warn(message, event) {
+				// 现在我们可以访问原生事件对象
+				if (event) {
+					event.preventDefault()
+				}
 				uni.showToast({
 					title: message
 				});
