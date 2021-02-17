@@ -4,6 +4,13 @@
 			<input v-model="message" placeholder="edit me">
 			<text>Message is: {{ message }}</text>
 		</view>
+		<view>
+			<picker @change="bindPickerChange" :value="index" :range="array">
+				<view class="picker">
+					当前选择：{{array[index]}}
+				</view>
+			</picker>
+		</view>
 	</view>
 </template>
 
@@ -12,7 +19,15 @@
 	export default {
 		data() {
 			return {
-				message:""
+				message:"",
+				index: 0,
+				array: ['A', 'B', 'C']
+			}
+		},
+		methods: {
+			bindPickerChange(e) {				
+				console.log(e.target.value);
+				this.index = e.target.value;
 			}
 		},
 		onLoad() {
