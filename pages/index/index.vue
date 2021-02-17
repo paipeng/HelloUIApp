@@ -19,6 +19,10 @@
 		<view>
 			<view>Now: "{{ now }}"</view>
 		</view>
+		
+		<view>
+			<input type="text" v-model="word">
+		</view>
 	</view>
 </template>
 
@@ -30,7 +34,8 @@
 				message: 'Hello',
 				firstName: 'Foo',
 				lastName: 'Bar',
-                fullName2: 'Foo Bar'
+                fullName2: 'Foo Bar',
+				word: 'word'
 			}
 		},
 		computed: {
@@ -68,7 +73,11 @@
             },
             lastName: function(val) {
                 this.fullName2 = this.firstName + ' ' + val
-            }
+            },
+			/* 使用watch来响应数据的变化 */
+			word(newVal, oldVal) {
+				console.log('最新值是：'+newVal,"原来的值是："+ oldVal);
+			}
         },
 		onLoad() {
 
